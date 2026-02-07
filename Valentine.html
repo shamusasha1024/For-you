@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Saatvik 💕</title>
+  <style>
+    body { margin:0; height:100vh; display:flex; justify-content:center; align-items:center; font-family:'Segoe UI',sans-serif; overflow:hidden; background:linear-gradient(135deg,#ffdde1,#ee9ca7); }
+    .card { background: rgba(255,255,255,0.95); padding:35px 25px; border-radius:20px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.2); width:90%; max-width:400px; position:relative; z-index:2; }
+    h1 { color:#ff4d6d; margin-bottom:10px; font-size:1.8em; }
+    p { color:#555; font-size:1.1em; line-height:1.5em; }
+    .heart { font-size:2.8em; animation:beat 1s infinite; margin:15px 0; }
+    @keyframes beat { 0%,100%{transform:scale(1);}50%{transform:scale(1.2);} }
+    button { padding:12px 25px; border:none; border-radius:25px; font-size:1em; cursor:pointer; margin:12px; transition: transform 0.2s; }
+    button:active { transform: scale(1.1); }
+    #startBtn { background:#ff4d6d; color:white; }
+    #yesBtn { background:#4CAF50; color:white; }
+    #noBtn { background:#ff6b6b; color:white; position:absolute; }
+    .hidden { display:none; }
+    .floating-heart { position:absolute; bottom:-50px; font-size:20px; animation:floatUp linear infinite; opacity:0.8; z-index:1; }
+    @keyframes floatUp { 0%{transform:translateY(0) rotate(0deg); opacity:1;} 100%{transform:translateY(-110vh) rotate(360deg); opacity:0;} }
+    @media (max-width:400px) { h1{font-size:1.6em;} p{font-size:1em;} button{padding:10px 20px; font-size:0.95em;} }
+  </style>
+</head>
+<body>
+  <audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+  <div class="card" id="startCard">
+    <h1>Hey Saatvik 💕</h1>
+    <div class="heart">❤️</div>
+    <p>I have a tiny surprise for you…</p>
+    <button id="startBtn" onclick="showQuestion()">Click Me 💌</button>
+  </div>
+  <div class="card hidden" id="questionCard">
+    <h1>Saatvik 💖</h1>
+    <p>Will you be my Valentine?</p>
+    <button id="yesBtn" onclick="sayYes()">Yes 💘</button>
+    <button id="noBtn" onmouseover="moveNo()">No 💔</button>
+  </div>
+  <div class="card hidden" id="yesCard">
+    <h1>YAYYY 🥰</h1>
+    <div class="heart">💖</div>
+    <p>You just made someone very happy 💕<br>Happy Valentine’s Day!</p>
+  </div>
+  <script>
+    function showQuestion(){document.getElementById("startCard").classList.add("hidden"); document.getElementById("questionCard").classList.remove("hidden"); document.getElementById("bgMusic").play();}
+    function sayYes(){document.getElementById("questionCard").classList.add("hidden"); document.getElementById("yesCard").classList.remove("hidden");}
+    function moveNo(){const noBtn=document.getElementById("noBtn"); const x=Math.random()*(window.innerWidth-100); const y=Math.random()*(window.innerHeight-50); noBtn.style.left=x+"px"; noBtn.style.top=y+"px";}
+    function createHeart(){const heart=document.createElement("div"); heart.className="floating-heart"; heart.innerText="❤️"; heart.style.left=Math.random()*100+"vw"; heart.style.animationDuration=(4+Math.random()*3)+"s"; document.body.appendChild(heart); setTimeout(()=>heart.remove(),7000);}
+    setInterval(createHeart,400);
+  </script>
+</body>
+</html>
